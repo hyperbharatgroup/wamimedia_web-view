@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/services/local_storage_service.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
-import '../features/auth/login_screen.dart';
+import 'features/auth/presentation/create_account_screen.dart';
 
 class AppEntry extends StatelessWidget {
   const AppEntry({super.key});
@@ -23,8 +23,8 @@ class AppEntry extends StatelessWidget {
         }
 
         /// if new onboarding screen or login screen
-        if (snapshot.data == false) {
-          return const LoginScreen();
+        if (snapshot.data == true) {
+          return const CreateAccountScreen();
         } else {
           return const OnboardingScreen();
         }

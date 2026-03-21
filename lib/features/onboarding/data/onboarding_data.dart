@@ -14,7 +14,7 @@ const List<OnboardingModel> onboardingData = [
     "Discover what's happening around you — upcoming events, local deals, alerts & announcements.",
   ),
   OnboardingModel(
-    lottie: "assets/lottie/events.json",
+    lottie: "assets/lottie/info.json",
     title: "Government Schemes & District Information",
     subtitle:
     "Access official contacts, schemes, tenders & emergency helplines.",

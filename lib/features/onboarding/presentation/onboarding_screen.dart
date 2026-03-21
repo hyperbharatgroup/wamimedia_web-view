@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/services/local_storage_service.dart';
 import '../data/onboarding_data.dart';
-import '../../auth/login_screen.dart';
+import '../../auth/presentation/create_account_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -31,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const LoginScreen()),
+      MaterialPageRoute(builder: (_) => const CreateAccountScreen()),
     );
   }
 
