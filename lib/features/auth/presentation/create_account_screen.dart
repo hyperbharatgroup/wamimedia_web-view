@@ -59,11 +59,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     const SizedBox(height: 12),
 
                     // Logo Icon
-                    const Center(
-                      child: Icon(
-                        Icons.person_add_alt_1,
-                        size: 80,
-                        color: Color(0xFF2962FF),
+                    Center(
+                      child: Image.asset(
+                        'assets/icons/app_icon.png',
+                        width: 130,
+                        height: 130,
+                        fit: BoxFit.contain, // Ensures the image scales correctly within the 80x80 box
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -87,7 +88,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         color: Colors.black54,
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 30),
 
                     // Input Fields
                     _buildCustomTextField(
@@ -185,7 +186,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 29),
+                    const SizedBox(height: 25),
 
                     // Or Divider
                     Row(
@@ -201,7 +202,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         const Expanded(child: Divider(color: Colors.black26, thickness: 1)),
                       ],
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 21),
 
                     // Dynamic Toggle Button
                     Row(
@@ -302,35 +303,35 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                     const SizedBox(height: 20),
 
-                    // Footer Terms
-                    Center(
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: 'By signing in or creating an account, you agree with our ',
-                          style: TextStyle(color: Colors.black54, fontSize: 13),
-                          children: [
-                            TextSpan(
-                              text: 'Terms Of Use',
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                            TextSpan(text: ' and '),
-                            TextSpan(
-                              text: 'Privacy Policy.',
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // // Footer Terms
+                    // Center(
+                    //   child: RichText(
+                    //     textAlign: TextAlign.center,
+                    //     text: const TextSpan(
+                    //       text: 'By signing in or creating an account, you agree with our ',
+                    //       style: TextStyle(color: Colors.black54, fontSize: 13),
+                    //       children: [
+                    //         TextSpan(
+                    //           text: 'Terms Of Use',
+                    //           style: TextStyle(
+                    //             color: Colors.black87,
+                    //             fontWeight: FontWeight.w600,
+                    //             decoration: TextDecoration.underline,
+                    //           ),
+                    //         ),
+                    //         TextSpan(text: ' and '),
+                    //         TextSpan(
+                    //           text: 'Privacy Policy.',
+                    //           style: TextStyle(
+                    //             color: Colors.black87,
+                    //             fontWeight: FontWeight.w600,
+                    //             decoration: TextDecoration.underline,
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
