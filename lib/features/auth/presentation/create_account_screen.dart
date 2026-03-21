@@ -1,5 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Required for inputFormatters
+import 'package:flutter/services.dart';
+
+import 'login_screen.dart';
+import 'otp_verification.dart'; // Required for inputFormatters
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -145,7 +149,55 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       },
                     ),
                     const SizedBox(height: 20),
+                    // Or Divider
+                    Row(
+                      children: [
+                        const Expanded(child: Divider(color: Colors.black26, thickness: 1)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'Or',
+                            style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
+                          ),
+                        ),
+                        const Expanded(child: Divider(color: Colors.black26, thickness: 1)),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
 
+                    // Dynamic Toggle Button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: () {
+                              setState(() {
+                                _isEmailMode = !_isEmailMode;
+                                _contactController.clear();
+                                // Reset validation errors when switching modes
+                                _formKey.currentState?.reset();
+                              });
+                            },
+                            icon: Icon(
+                                _isEmailMode ? Icons.phone : Icons.email,
+                                color: Colors.black87
+                            ),
+                            label: Text(
+                              _isEmailMode ? 'Phone Number' : 'Email',
+                              style: const TextStyle(color: Colors.black87, fontSize: 16),
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              side: const BorderSide(color: Colors.black38),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
                     // Privacy Policy Checkbox
                     Row(
                       children: [
@@ -188,56 +240,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                     const SizedBox(height: 25),
 
-                    // Or Divider
-                    Row(
-                      children: [
-                        const Expanded(child: Divider(color: Colors.black26, thickness: 1)),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            'Or',
-                            style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
-                          ),
-                        ),
-                        const Expanded(child: Divider(color: Colors.black26, thickness: 1)),
-                      ],
-                    ),
-                    const SizedBox(height: 21),
-
-                    // Dynamic Toggle Button
-                    Row(
-                      children: [
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                _isEmailMode = !_isEmailMode;
-                                _contactController.clear();
-                                // Reset validation errors when switching modes
-                                _formKey.currentState?.reset();
-                              });
-                            },
-                            icon: Icon(
-                                _isEmailMode ? Icons.phone : Icons.email,
-                                color: Colors.black87
-                            ),
-                            label: Text(
-                              _isEmailMode ? 'Phone Number' : 'Email',
-                              style: const TextStyle(color: Colors.black87, fontSize: 16),
-                            ),
-                            style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 14),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              side: const BorderSide(color: Colors.black38),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 40),
-
                     // Send OTP Button
                     ElevatedButton(
                       onPressed: () {
@@ -264,6 +266,16 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               backgroundColor: Colors.green,
                             ),
                           );
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OtpVerificationScreen(
+                                contactInfo: contactInfo, // Passing the email or phone number here
+                              ),
+                            ),
+                          );
+
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -285,17 +297,26 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     // Login Link
                     Center(
                       child: RichText(
-                        text: const TextSpan(
+                        text: TextSpan(
                           text: 'Already have an account? ',
-                          style: TextStyle(color: Colors.black87, fontSize: 15),
+                          style: const TextStyle(color: Colors.black87, fontSize: 15),
                           children: [
                             TextSpan(
                               text: 'Sign in',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0xFF1565C0),
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.underline,
                               ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LoginScreen(),
+                                    ),
+                                  );
+                                },
                             ),
                           ],
                         ),
